@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+
+    <style>
+        .started{
+            margin-top: 200px;
+        }
+        strong{
+            color: #788eca;
+        }
+        .see{
+        padding-top: 5px;
+        }
+        .ceo{
+        display: flex;
+        justify-content: space-evenly;
+        padding: 200px 20px 0px;
+        gap: 35px;
+        }
+        .ceo2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        }
+        .card {
+        color: white;
+        width: 100%;
+        max-width: 190px;
+        aspect-ratio: 190 / 254;
+        position: relative;
+        outline: 4px solid black;
+        border-radius: 8px;
+        line-height: 150%;
+        padding: 16px;
+        background: #253358;
+        transition: background-color 0.6s ease-in-out;
+        overflow: hidden;
+        }
+        .card-front,
+        .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 16px;
+        box-sizing: border-box;
+        }
+        .card-front {
+        bottom: 0;
+        left: 0;
+        background-color: #253358;
+        text-align: center;
+        align-items: center;
+        transition: transform 0.8s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+        }
+        .card-back {
+        transform: translateX(120%);
+        transition: transform 0.8s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+        font-size: 1rem;
+        text-align: justify;
+        max-width: 92%;
+        color: black;
+        }
+        .title {
+        font-size: 1rem;
+        font-weight: bold;
+        padding-top: 15px;
+        color: rgb(237, 222, 222);
+        }
+        .subtitle {
+        font-size: 0.9rem;
+        color: rgb(237, 222, 222);
+        }
+        .card:hover {
+        background-color: #1b1b1b25;
+        }
+        .card:hover .card-front {
+        transform: translateX(-100%);
+        }
+        .card:hover .card-back {
+        transform: translateX(0);
+        }
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <link rel="icon" type="image/png" href="media/logo.png">
+</head>
+<body>
+    <nav class="navbar-custom">
+        <div class="container">
+            <ul class="nav align-items-center">
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#">
+                        <img src="media/logo-terang.png" alt="" class="logo">
+                    </a>
+                </li>
+                <li class="nav-item mx-auto">
+                    <div class="d-flex home">
+                        <ul>
+                            <li><a class="nav-link" href="index.html">Home</a></li>
+                            <li><a class="nav-link" href="galery.html">Gallery<a></a></li>
+                            <li><a class="nav-link nav-custom" href="about.html">About Us</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="btn login" href="login.html" role="button">Log In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <banner>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="carousel-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 text-carousel">
+                                <h5 class="fw-bold mb-3 text-white"> Manage Your Day More Easily </h5>
+                                <p class="text-white">  Record tasks, set priorities, and complete everything on time. </p>
+                            </div>
+                            <div class="col-md-5 text-center">
+                                <img src="media/slide-1.png" class="img-fluid" style="max-height:220px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 text-carousel">
+                                <h5 class="fw-bold mb-3 text-white"> Not Sure Where to Start? </h5>
+                                <p class="text-white"> Deadlines piling up, assignments forgotten, and plans falling apart? </p>
+                            </div>
+                            <div class="col-md-5 text-center">
+                                <img src="media/slide-2.png" class="img-fluid" style="max-height:220px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 text-carousel">
+                                <h5 class="fw-bold mb-3 text-white"> All Tasks Are Neatly Arranged </h5>
+                                <p class="text-white"> Create to-do lists, set priorities, and easily monitor your daily progress. </p>
+                            </div>
+                            <div class="col-md-5 text-center">
+                                <img src="media/slide-3.png" class="img-fluid" style="max-height:220px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </banner>
+
+    <content>
+        <div class="hero">
+            <div class="content-1">
+                <div class="mascot-container">
+                <img src="media/mascot.png" id="mascot" alt="min.to">
+                <div class="bubble" id="bubble"></div>
+                </div>
+
+                <span>
+                    <span> ABOUT US </span>
+                </span>
+            </div>
+        </div>
+        <div class="line">
+            <div>
+            _________________
+            </div>
+        </div>
+    </content>
+
+    <div>
+        <div class="text-center">
+            <h1 class="started main" style="font-size: 50px">
+                <b> Creating global impact by <br> <strong class="text-indigo-600"> simplifying </strong> life’s complexities </b>
+            </h1>
+            <p class="see main">
+                We’ll be here for our users and our teammates for decades to come.
+            </p>
+        </div>
+    </div>
+
+    <div class="ceo">
+        <div class="ceo2">
+            <h1 class="main" style="font-size: 50px">
+                <b>Simplify your <strong class="text-indigo-600"> planning </strong></b>
+            </h1>
+            <p class="see main">
+                You own your team data, we simply help you protect it. 
+            </p>
+        </div>
+        <div class="card main">
+            <div class="card-front">
+                <img class="foto" src="media/fotodiri.png" alt="fotodiri">
+                <p class="title">Reyhan <br> Misbahussuduri</p>
+                <p class="subtitle">Web Dev</p>
+            </div>
+            <div class="card-back">
+                <p>"By using simple elements such as sections, sub-tasks, and flexible views, we can easily track progress and adapt our projects on the fly."</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-row">
+            <div class="footer-bottom1">
+                <img src="media/logo-footer.png" alt="" class="logo-footer1">
+                Join millions of people who organize <br> work and life with todo.
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="galery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="https://discord.gg/DbS24qv7"><i class="fab fa-discord"></i></a>
+                <a href="https://www.linkedin.com/in/reyhan-misbahussuduri-945537393/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/eryahngka_/"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="copy"> &copy; CopyRight Reyhan Misbahussuduri_251011701282_01SIFP014</div>
+    </footer>
+
+    <footer>
+        <div class="footer-bottom">
+            Website made by <img src="media/logo-footer.png" alt="logo-footer" class="logo-footer2">
+        </div>
+    </footer>
+
+    <script>
+        const mascot = document.getElementById("mascot");
+        const bubble = document.getElementById("bubble");
+
+        function typeText(text) {
+        bubble.innerHTML = "";
+        bubble.style.display = "block";
+
+        let i = 0;
+        const interval = setInterval(() => {
+            bubble.innerHTML += text[i];
+            i++;
+            if (i >= text.length) clearInterval(interval);
+        }, 80);
+        }
+
+        mascot.addEventListener("click", () => {
+        mascot.classList.add("wave");
+        typeText("Small team, big vision");
+
+        setTimeout(() => mascot.classList.remove("wave"), 1600);
+        setTimeout(() => bubble.style.display = "none", 3500);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

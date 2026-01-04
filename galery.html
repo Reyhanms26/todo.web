@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+
+    <style>
+        .word2{
+        margin-top: 150px;
+        justify-self: center;
+        padding: 15px;
+        font-size: 35px;
+        font-family: 'Courier New', Courier, monospace;
+        text-align: center;
+        border-radius: 15px;
+        width: 240px;
+        background-color: black;
+        color: white;
+        box-shadow: 0px 0px 10px 5px #00000088;
+        }
+        .card-container {
+        padding-top: 50px;
+        display: flex;
+        gap: 40px;          
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        }
+        .kartu {
+        overflow: visible;
+        width: 190px;
+        height: 254px;
+        }
+        .content {
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 300ms;
+        box-shadow: 0px 0px 10px 1px #000000ee;
+        border-radius: 5px;
+        }
+        .front, .back {
+        background-color: black;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        border-radius: 5px;
+        overflow: hidden;
+        }
+        .back {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        }
+        .back::before {
+        position: absolute;
+        content: ' ';
+        display: block;
+        width: 160px;
+        height: 160%;
+        background: linear-gradient(90deg, transparent, white, white, white, white, transparent);
+        animation: rotation_481 5000ms infinite linear;
+        }
+        .back-content {
+        position: absolute;
+        width: 98%;
+        height: 98%;
+        background-color: #455685;
+        font-family: sans-serif;
+        color: white;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        }
+        .kartu:hover .content {
+        transform: rotateY(180deg);
+        }
+        @keyframes rotation_481 {
+        0% {
+            transform: rotateZ(0deg);
+        }
+        0% {
+            transform: rotateZ(360deg);
+        }
+        }
+        .front {
+        transform: rotateY(180deg);
+        color: white;
+        }
+        .front .front-content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        }
+        .front-content .badge {
+        background-color: #00000055;
+        padding: 2px 10px;
+        border-radius: 10px;
+        backdrop-filter: blur(2px);
+        width: fit-content;
+        }
+        .description {
+        box-shadow: 0px 0px 10px 5px #00000088;
+        width: 100%;
+        padding: 10px;
+        background-color: #00000099;
+        backdrop-filter: blur(5px);
+        border-radius: 5px;
+        }
+        .title {
+        font-size: 11px;
+        max-width: 100%;
+        display: flex;
+        justify-content: space-between;
+        }
+        .title p {
+        width: 85%;
+        }
+        .card-footer {
+        color: #ffffff88;
+        margin-top: 5px;
+        font-size: 8px;
+        }
+        .front .img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        }
+        .circle {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background-color: #455685;
+        position: relative;
+        filter: blur(15px);
+        animation: floating 2600ms infinite linear;
+        }
+        #bottom {
+        background-color: #ff8866;
+        left: 50px;
+        top: 0px;
+        width: 150px;
+        height: 150px;
+        animation-delay: -800ms;
+        }
+        #right {
+        background-color: #ff2233;
+        left: 160px;
+        top: -80px;
+        width: 30px;
+        height: 30px;
+        animation-delay: -1800ms;
+        }
+        @keyframes floating {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(10px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+        }
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <link rel="icon" type="image/png" href="media/logo.png">
+</head>
+<body>
+    <nav class="navbar-custom">
+        <div class="container">
+            <ul class="nav align-items-center">
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#">
+                        <img src="media/logo-terang.png" alt="" class="logo">
+                    </a>
+                </li>
+                <li class="nav-item mx-auto">
+                    <div class="d-flex home">
+                        <ul>
+                            <li><a class="nav-link" href="index.html">Home</a></li>
+                            <li><a class="nav-link nav-custom" href="galery.html">Gallery<a></a></li>
+                            <li><a class="nav-link" href="about.html">About Us</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="btn login" href="login.html" role="button">Log In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <banner>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="carousel-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 text-carousel">
+                                <h5 class="fw-bold mb-3 text-white"> Manage Your Day More Easily </h5>
+                                <p class="text-white">  Record tasks, set priorities, and complete everything on time. </p>
+                            </div>
+                            <div class="col-md-5 text-center">
+                                <img src="media/slide-1.png" class="img-fluid" style="max-height:220px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 text-carousel">
+                                <h5 class="fw-bold mb-3 text-white"> Not Sure Where to Start? </h5>
+                                <p class="text-white"> Deadlines piling up, assignments forgotten, and plans falling apart? </p>
+                            </div>
+                            <div class="col-md-5 text-center">
+                                <img src="media/slide-2.png" class="img-fluid" style="max-height:220px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 text-carousel">
+                                <h5 class="fw-bold mb-3 text-white"> All Tasks Are Neatly Arranged </h5>
+                                <p class="text-white"> Create to-do lists, set priorities, and easily monitor your daily progress. </p>
+                            </div>
+                            <div class="col-md-5 text-center">
+                                <img src="media/slide-3.png" class="img-fluid" style="max-height:220px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </banner>
+
+    <content>
+        <div class="hero">
+            <div class="content-1">
+                <div class="mascot-container">
+                <img src="media/mascot.png" id="mascot" alt="min.to">
+                <div class="bubble" id="bubble"></div>
+                </div>
+
+                <span>
+                    <span> OUR GALLERY </span>
+                </span>
+            </div>
+        </div>
+        <div class="line">
+            <div>
+            _________________
+            </div>
+        </div>
+    </content>
+    
+    <card-1>
+        <div class="word2 main"><strong>WORK</strong></div>
+        <div class="card-container">
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/accounting.png" alt="">
+                            <center>
+                            <strong> ACCOUNTING <br> TASKS </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Accounting Task</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>create a system to keep your books, receipts, and invoices organized</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Work &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/client.png" alt="">
+                            <center>
+                            <strong> CLIENT <br> MANAGEMENT </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Client Management</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>Organize your work with clients from the smallest to largest details</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Work &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/agenda.png" alt="">
+                            <center>
+                            <strong> MEETING <br> AGENDA </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Meeting Agenda</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>Waste less time in meetings, ensuring they're efficient and action-oriented</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Work &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/project.png" alt="">
+                            <center>
+                            <strong> PROJECT <br> TRACKER </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Project Tracker</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>A central, organized place to keep track of every step in your project</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Work &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/deep.png" alt="">
+                            <center>
+                            <strong> DEEP <br> WORK </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Deep Work</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>Practice prioritizing focus and eliminating distraction with this template</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Work &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </card-1>
+    
+    
+    <card-2>
+        <div class="word2 main"><strong>PERSONAL</strong></div>
+        <div class="card-container">
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/goal.png" alt="">
+                            <center>
+                            <strong> GOAL <br> TRACKER </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Goal Tracker</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>Build a system that connects your high-level goals to your daily actions</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Personal &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/fitness.png" alt="">
+                            <center>
+                            <strong> FITNESS </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Fitness</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>Make fitness a habit by adding your favorite exercise to your to-do-list</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Personal &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/grocery.png" alt="">
+                            <center>
+                            <strong> GROCERY <br> LIST </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Grocery List</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>Keep your grocery list wherever you go by adding it all to your Todo</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Personal &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/weekly.png" alt="">
+                            <center>
+                            <strong> WEEKLY <br> REVIEW </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Weekly Review</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>Start reviewing your tasks every week with this GTD-friendly checklist</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Personal &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/checklist.png" alt="">
+                            <center>
+                            <strong> APPOINTMENTS </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Appointments</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>Never forget (or forget to prepare for) another meeting or appointment</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Personal &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </card-2>
+    
+
+    <card-3>
+        <div class="word2 main"><strong>Education</strong></div>
+        <div class="card-container">
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/class.png" alt="">
+                            <center>
+                            <strong> CLASS <br> PLANNING </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Class Planning</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>Keep all the many details of your class plans organized and in one place</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Education &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/student.png" alt="">
+                            <center>
+                            <strong> STUDENT <br> PROJECT </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Student Project</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>Share this project with your classmates and make your way towards an A</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Education &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kartu main">
+                <div class="content">
+                    <div class="back">
+                        <div class="back-content">
+                            <img src="media/planning.png" alt="">
+                            <center>
+                            <strong> STUDENT <br> PLANNING </strong>
+                            </center>
+                        </div>
+                        </div>
+                        <div class="front">
+                        
+                        <div class="img">
+                            <div class="circle">
+                            </div>
+                            <div class="circle" id="right">
+                            </div>
+                            <div class="circle" id="bottom">
+                            </div>
+                        </div>
+
+                        <div class="front-content">
+                            <small class="badge">Student Planning</small>
+                            <div class="description">
+                            <div class="title">
+                                <p class="title">
+                                <strong>Never forget a single reading or assignment with this handy checklist for organizing each course</strong>
+                                </p>
+                                <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
+                            </div>
+                            <p class="card-footer">
+                                Education &nbsp; | &nbsp; todo.app
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </card-3>
+
+    <footer class="footer">
+        <div class="footer-row">
+            <div class="footer-bottom1">
+                <img src="media/logo-footer.png" alt="" class="logo-footer1">
+                Join millions of people who organize <br> work and life with todo.
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="galery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="https://discord.gg/DbS24qv7"><i class="fab fa-discord"></i></a>
+                <a href="https://www.linkedin.com/in/reyhan-misbahussuduri-945537393/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/eryahngka_/"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="copy"> &copy; CopyRight Reyhan Misbahussuduri_251011701282_01SIFP014</div>
+    </footer>
+
+    <footer>
+        <div class="footer-bottom">
+            Website made by <img src="media/logo-footer.png" alt="logo-footer" class="logo-footer2">
+        </div>
+    </footer>
+    
+    <script>
+        const mascot = document.getElementById("mascot");
+        const bubble = document.getElementById("bubble");
+
+        function typeText(text) {
+        bubble.innerHTML = "";
+        bubble.style.display = "block";
+
+        let i = 0;
+        const interval = setInterval(() => {
+            bubble.innerHTML += text[i];
+            i++;
+            if (i >= text.length) clearInterval(interval);
+        }, 80);
+        }
+
+        mascot.addEventListener("click", () => {
+        mascot.classList.add("wave");
+        typeText("This is Our Gallery");
+
+        setTimeout(() => mascot.classList.remove("wave"), 1600);
+        setTimeout(() => bubble.style.display = "none", 3500);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html> 
