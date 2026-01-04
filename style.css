@@ -1,0 +1,232 @@
+/* Navbar */
+.navbar-custom {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white;
+}
+.logo{
+  height: 48px;
+}
+.nav-link {
+  color: black !important;
+}
+.nav-link:hover {
+  color: white !important;
+}
+.nav-custom{
+  background-color: #253358 !important;
+  color: white !important;
+  border-radius: 30px;
+}
+.btn.login {
+  list-style: none;
+  border-radius: 30px;
+  border: 1px solid black;
+  padding: 5px 10px;
+  font-weight: 500;
+  background: linear-gradient(#253358 0 0) left/0 100% no-repeat;
+  transition: background-size .4s ease, color .4s;
+  display: inline-block;
+}
+.btn.login:hover {
+  background-size: 100% 100%;
+  color: white !important;
+}
+.btn.login:active{
+  box-shadow: none;
+  transform: scale(0.9);
+}
+.home li{
+  list-style: none;
+  border-radius: 30px;
+  background: linear-gradient(#253358 0 0) left/0 100% no-repeat;
+  transition: background-size .4s ease, color .4s;
+  display: inline-block;
+}
+.home li:hover{
+  background-size: 100% 100%;
+  color: white;
+}
+.home li:active{
+  box-shadow: none;
+  transform: scale(0.9);
+}
+
+/* Banner */
+.carousel-card {
+  background: #253358;
+  padding: 40px;
+  min-height: 300px;
+}
+.btn.start{
+  background-color: #455685;
+  border-color: #253358;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-weight: 500;
+  margin-right: -35px;
+}
+.btn.start:hover {
+  background-color: #0f1a37;
+  border-color: #1e2a4a;
+  box-shadow: 2px 2px 2px #788eca;
+}
+.text-carousel{
+  margin-left: 20px;
+}
+
+/* MASCOT */
+.mascot-container {
+  position: relative;
+  animation: idle 2s infinite;
+}
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#mascot {
+  width: 140px;
+  image-rendering: pixelated;
+  cursor: pointer;
+  display: block;
+}
+@keyframes idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.bubble {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 12px;
+
+  background: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 2px solid #333;
+  font-size: 14px;
+  white-space: nowrap;
+  display: none;
+}
+.content-1 {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 55px;
+  margin-bottom: 45px;
+  font-size: 50px;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+  font-weight: bold;
+}
+.line{
+  text-align: center;
+}
+
+/* Footer */
+.footer{
+  background-color: #455685;
+  color: white;
+  margin-bottom: 0;
+  margin-top: 25px;
+  padding: 35px 30px 5px;
+  gap: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-col{
+  padding-top: 25px;
+}
+.footer-col h4 {
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-col ul li {
+  margin-bottom: 1px;
+}
+.footer-col ul li a {
+  color: #cfcfd3;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+.footer-col ul li a:hover {
+  color: #ffffff;
+  text-shadow: 2px 2px 2px #0f1a37;
+}
+.logo-footer1{
+  height: 75px;
+  display: flex;
+  padding-bottom: 10px;
+  gap: 5px;
+  align-content: flex-start;
+}
+.copy{
+  font-size: 10px;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Footer-Bottom */
+.footer-bottom{
+  background-color: #253358;
+  margin-top: 0;
+  border-top: 1px solid #222;
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+}
+.logo-footer2{
+  height: 48px;
+  margin-top: -5px;
+}
+.footer-bottom1{
+  padding-bottom: 30px;
+}
+
+/* Social Icons */
+.social-icons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.social-icons a {
+  color: #cfcfd3;
+  font-size: 18px;
+  margin-right: 5px;
+  transition: 0.3s;
+}
+.social-icons a:hover {
+  color: #253358;
+  text-shadow: 2px 2px 2px #cfcfd3;
+}
+
+/* Animasi */
+.main{
+  animation: fadeUp 1s linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
